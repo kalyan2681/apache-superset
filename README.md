@@ -1,44 +1,57 @@
-### Apache Superset Portfolio – Kalyan
-This repository includes example dashboards, SQL queries, and Jinja templates that reflect the way I typically build analytics solutions using Superset in real-world projects.  
-The dashboards shown here were recreated using dummy data but follow the same patterns and structure I’ve used in production.
+# Apache Superset Portfolio – Kalyan
 
+
+This repository contains sample dashboards, SQL queries, and Jinja templates that represent how I typically design analytics solutions using Superset.  
+The dashboards shown here were recreated using dummy data for demonstration purposes, but the design patterns, filters, metrics, and visual structure closely match my real project experience.
+
+---
 
 ## 📊 Dashboard Samples
 
-Below is a combined snapshot of the dashboards I've built in Superset, including:
+Below are four sample dashboards I built in Superset (v2 UI).  
+These demonstrate KPIs, time-series analytics, drilldowns, cross-filters, and product performance insights.
 
-- **Sales Overview Dashboard**  
-- **Customer Retention Analytics**  
-- **Top Products Performance**  
-- **Cross-filtering & Interactive Views**  
-- **Customer Drilldown Dashboard**
+### **1. Sales Overview Dashboard**
+![Sales Overview](dashboards/sales_overview.png)
 
-All dashboards follow Superset v2 UI style with filters, KPIs, line charts, bar charts, cohort-style visuals, and drill-through capabilities.
+---
 
-### **Dashboard Preview**
-![Superset Dashboards](dashboards/superset.png)
+### **2. Customer Retention Dashboard**
+![Customer Retention](dashboards/customer_retention.png)
 
+---
 
-## 🧩 SQL Logic Used in Dashboards
+### **3. Top Products Dashboard**
+![Top Products](dashboards/top_products.png)
 
-I frequently use advanced SQL features to support analytics dashboards:
+---
 
-### ✔ Window Functions
-- `DENSE_RANK()` for ranking top products/customers  
-- `LAG()` for MoM & YoY comparisons  
-- `ROW_NUMBER()` for customer journeys  
-- `PARTITION BY` for segmentation  
+### **4. Customer Drilldown Dashboard**
+![Customer Details](dashboards/customer_details.png)
 
-### ✔ KPI Calculations
+---
+
+## 🧠 Key Capabilities Demonstrated
+
+### ✔ KPI Design  
 - Revenue, Orders, Margin  
-- Rolling averages (7, 30, 90 days)  
-- Conversion funnel metrics  
-- Customer lifecycle metrics  
+- Rolling weekly/monthly averages  
+- Product and segment-level metrics  
 
-SQL examples are included in the `/sql` directory.
+### ✔ Advanced SQL  
+- Window functions (`DENSE_RANK`, `ROW_NUMBER`, `LAG`)  
+- Cohort-style month-over-month trends  
+- Ranking and segmentation logic  
+- Time-series breakdowns  
 
+### ✔ Jinja Templating  
+Used to make dashboards dynamic and reusable:
 
+```jinja2
+WHERE order_date BETWEEN '{{ start_date }}' AND '{{ end_date }}'
 
-## 🔧 Jinja Templating
+{% if region %}
+  AND region = '{{ region }}'
+{% endif %}
 
-To make dashboards dynamic and reusable, I use Jinja temp
+LIMIT {{ top_n | default(10) }}
