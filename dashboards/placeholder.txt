@@ -1,1 +1,2 @@
-x
+This file exists only to keep the folder structure. Dashboard images are stored here.
+
